@@ -18,8 +18,7 @@ class NpEncoder(json.JSONEncoder):
 
 app = Flask(__name__)
 app.json_encoder = NpEncoder
-# serving01 → classificador
-modelo = joblib.load('models/modelo01.joblib')
+modelo = None
 
 @app.route("/", methods=['GET', 'POST'])
 def call_home(request = request):
@@ -33,7 +32,7 @@ def call_predict(request = request):
     print(request.values)
 
     json_ = request.json
-    campos = pd.DataFrame([json_])
+    campos = pd.DataFrame(json_)
 
     if campos.shape[0] == 0:
         return "Dados de chamada da API estão incorretos.", 400
