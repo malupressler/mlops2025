@@ -18,7 +18,8 @@ class NpEncoder(json.JSONEncoder):
 
 app = Flask(__name__)
 app.json_encoder = NpEncoder
-modelo = None
+# serving01 → classificador
+modelo = joblib.load('models/modelo01.joblib')
 
 @app.route("/", methods=['GET', 'POST'])
 def call_home(request = request):
