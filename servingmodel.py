@@ -32,7 +32,7 @@ def call_predict(request = request):
     print(request.values)
 
     json_ = request.json
-    campos = pd.DataFrame(json_)
+    campos = pd.DataFrame([json_])
 
     if campos.shape[0] == 0:
         return "Dados de chamada da API estão incorretos.", 400
